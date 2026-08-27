@@ -14,16 +14,18 @@ export function useTheme() {
   );
 
   const toggle = useCallback(() => {
-    setTheme((current) => {
-      const next: Theme = current === "light" ? "dark" : "light";
-      document.documentElement.classList.toggle("dark", next === "dark");
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        // Sin almacenamiento disponible: el tema vive solo en la sesión.
-      }
-      return next;
-    });
+    // El DOM es la fuente de verdad; los efectos viven en el handler (no en el
+    // updater de estado, que StrictMode puede invocar más de una vez).
+    const next: Theme = document.documentElement.classList.contains("dark")
+      ? "light"
+      : "dark";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // Sin almacenamiento disponible: el tema vive solo en la sesión.
+    }
+    setTheme(next);
   }, []);
 
   return { theme, toggle };
