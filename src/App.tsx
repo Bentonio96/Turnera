@@ -1,13 +1,22 @@
 import { MotionConfig } from "framer-motion";
-import { FAQ } from "./components/FAQ";
-import { Features } from "./components/Features";
-import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { LogoMarquee } from "./components/LogoMarquee";
-import { Pricing } from "./components/Pricing";
-import { Testimonials } from "./components/Testimonials";
+import { LazySection } from "./components/ui/LazySection";
+
+const cargarFeatures = () =>
+  import("./components/Features").then((mod) => ({ default: mod.Features }));
+const cargarPricing = () =>
+  import("./components/Pricing").then((mod) => ({ default: mod.Pricing }));
+const cargarTestimonials = () =>
+  import("./components/Testimonials").then((mod) => ({
+    default: mod.Testimonials,
+  }));
+const cargarFAQ = () =>
+  import("./components/FAQ").then((mod) => ({ default: mod.FAQ }));
+const cargarFinalCTA = () =>
+  import("./components/FinalCTA").then((mod) => ({ default: mod.FinalCTA }));
 
 export default function App() {
   return (
@@ -22,11 +31,11 @@ export default function App() {
       <main id="contenido">
         <Hero />
         <LogoMarquee />
-        <Features />
-        <Pricing />
-        <Testimonials />
-        <FAQ />
-        <FinalCTA />
+        <LazySection cargar={cargarFeatures} id="producto" altoEstimado="min-h-[80rem]" />
+        <LazySection cargar={cargarPricing} id="planes" altoEstimado="min-h-[60rem]" />
+        <LazySection cargar={cargarTestimonials} id="opiniones" altoEstimado="min-h-[36rem]" />
+        <LazySection cargar={cargarFAQ} id="faq" altoEstimado="min-h-[36rem]" />
+        <LazySection cargar={cargarFinalCTA} altoEstimado="min-h-[24rem]" />
       </main>
       <Footer />
     </MotionConfig>

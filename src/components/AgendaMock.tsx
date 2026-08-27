@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { MessageCircle, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "../lib/cn";
@@ -25,7 +25,7 @@ const profesionales = ["MP", "JV", "LM"];
 function EstadoChip({ confirmado }: { confirmado: boolean }) {
   return (
     <AnimatePresence mode="popLayout" initial={false}>
-      <motion.span
+      <m.span
         key={confirmado ? "ok" : "pendiente"}
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ function EstadoChip({ confirmado }: { confirmado: boolean }) {
           )}
         />
         {confirmado ? "Confirmado" : "Pendiente"}
-      </motion.span>
+      </m.span>
     </AnimatePresence>
   );
 }
@@ -56,11 +56,17 @@ function EstadoChip({ confirmado }: { confirmado: boolean }) {
  */
 export function AgendaMock() {
   const reduce = useReducedMotion();
-  const [confirmada, setConfirmada] = useState(reduce ?? false);
-  const [toast, setToast] = useState(reduce ?? false);
+  // Estado inicial idéntico en SSG y cliente (la hidratación exige el mismo
+  // markup); con reduced-motion el estado final se aplica apenas monta.
+  const [confirmada, setConfirmada] = useState(false);
+  const [toast, setToast] = useState(false);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce) {
+      setToast(true);
+      setConfirmada(true);
+      return;
+    }
     const t1 = window.setTimeout(() => setToast(true), 1600);
     const t2 = window.setTimeout(() => setConfirmada(true), 2300);
     return () => {
@@ -147,8 +153,8 @@ export function AgendaMock() {
       </div>
 
       {/* Notificación flotante */}
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 14, scale: 0.96 }}
+      <m.div
+        initial={{ opacity: 0, y: 14, scale: 0.96 }}
         animate={toast ? { opacity: 1, y: 0, scale: 1 } : undefined}
         transition={{ duration: DUR.base, ease: EASE }}
         className="absolute -bottom-8 left-3 flex items-center gap-2.5 rounded-card border border-line bg-surface p-3 pr-4 shadow-pop sm:-left-6"
@@ -164,7 +170,7 @@ export function AgendaMock() {
             WhatsApp · recién
           </span>
         </span>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

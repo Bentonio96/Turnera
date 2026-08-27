@@ -1,4 +1,4 @@
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { DUR, EASE } from "../../lib/motion";
 
@@ -13,23 +13,17 @@ type RevealProps = {
 
 /**
  * Entrada al hacer scroll: fade + rise corto, una sola vez.
- * Con prefers-reduced-motion activo el contenido aparece sin movimiento.
+ * Con prefers-reduced-motion activo, MotionConfig (reducedMotion="user")
+ * anula el desplazamiento y deja solo un fundido breve: el contenido
+ * aparece sin movimiento. El markup inicial es idéntico en SSG y cliente,
+ * condición necesaria para que la hidratación conserve el DOM.
  */
 export function Reveal({ children, delay = 0, y = 16, className }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return (
-      <div ref={ref} className={className}>
-        {children}
-      </div>
-    );
-  }
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className={className}
       initial={{ opacity: 0, y }}
@@ -37,6 +31,6 @@ export function Reveal({ children, delay = 0, y = 16, className }: RevealProps) 
       transition={{ duration: DUR.slow, ease: EASE, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

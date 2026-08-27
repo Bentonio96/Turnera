@@ -7,10 +7,14 @@ const STORAGE_KEY = "turnera-theme";
 /**
  * El tema inicial lo resuelve el script inline de index.html antes del primer
  * paint; este hook solo lee la clase resultante y persiste los cambios.
+ * El guard de document permite ejecutarlo durante el prerender (SSG).
  */
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() =>
-    document.documentElement.classList.contains("dark") ? "dark" : "light",
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light",
   );
 
   const toggle = useCallback(() => {

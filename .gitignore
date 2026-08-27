@@ -3,6 +3,7 @@ node_modules/
 
 # Build
 dist/
+dist-server/
 
 # Entorno y tooling local
 *.local

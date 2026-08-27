@@ -1,4 +1,4 @@
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { EASE } from "../../lib/motion";
 import { Pop } from "../ui/Pop";
@@ -44,7 +44,7 @@ export function TeamVisual() {
                 {fila.nombre}
               </span>
               <span className="h-2 flex-1 overflow-hidden rounded-full bg-surface-2">
-                <motion.span
+                <m.span
                   className="block h-full rounded-full bg-accent origin-left"
                   style={{ width: `${fila.pct}%` }}
                   initial={reduce ? false : { scaleX: 0 }}

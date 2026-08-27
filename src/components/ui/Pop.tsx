@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { DUR, EASE } from "../../lib/motion";
 
@@ -28,13 +28,13 @@ export function Pop({
   }
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={{ opacity: 0, y, scale }}
       animate={show ? { opacity: 1, y: 0, scale: 1 } : undefined}
       transition={{ duration: DUR.base, ease: EASE, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

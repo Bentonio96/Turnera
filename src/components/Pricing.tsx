@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { cn } from "../lib/cn";
@@ -165,7 +165,7 @@ export function Pricing() {
                     <span className="text-sm text-muted">US$</span>
                     <span className="inline-grid overflow-hidden">
                       <AnimatePresence mode="popLayout" initial={false}>
-                        <motion.span
+                        <m.span
                           key={`${plan.id}-${billing}`}
                           initial={{ opacity: 0, y: 12 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export function Pricing() {
                           className="font-display text-5xl font-semibold tabular-nums"
                         >
                           {precio}
-                        </motion.span>
+                        </m.span>
                       </AnimatePresence>
                     </span>
                     <span className="text-sm text-muted">/ mes</span>

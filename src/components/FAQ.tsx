@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { cn } from "../lib/cn";
@@ -98,7 +98,7 @@ function FaqItem({
       ) : (
         <AnimatePresence initial={false}>
           {abierta && (
-            <motion.div
+            <m.div
               id={idPanel}
               role="region"
               aria-labelledby={idBoton}
@@ -109,7 +109,7 @@ function FaqItem({
               className="overflow-hidden"
             >
               {panel}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       )}

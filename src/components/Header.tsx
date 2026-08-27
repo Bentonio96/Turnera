@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "../lib/cn";
@@ -81,7 +81,7 @@ export function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.nav
+          <m.nav
             id="menu-movil"
             aria-label="Principal"
             initial={{ opacity: 0, y: -8 }}
@@ -105,7 +105,7 @@ export function Header() {
                 Empezá gratis
               </Button>
             </Container>
-          </motion.nav>
+          </m.nav>
         )}
       </AnimatePresence>
     </header>

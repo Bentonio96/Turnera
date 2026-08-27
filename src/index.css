@@ -92,6 +92,33 @@
   }
 }
 
+/* Entrada del hero en CSS puro: pinta en el primer frame (LCP) sin esperar JS
+   de animación. Mismo easing y duración que el resto del motion. */
+@keyframes entrada-hero {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .entrada-hero {
+    opacity: 0;
+    animation: entrada-hero 0.4s var(--ease-brand) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entrada-hero {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}
+
 @layer base {
   html {
     scroll-padding-top: 5.5rem;

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, type KeyboardEvent } from "react";
 import { cn } from "../lib/cn";
@@ -97,7 +97,7 @@ export function Testimonials() {
 
             <div aria-live="polite" className="min-h-52 sm:min-h-44">
               <AnimatePresence mode="wait" initial={false}>
-                <motion.figure
+                <m.figure
                   key={index}
                   role="group"
                   aria-roledescription="diapositiva"
@@ -126,7 +126,7 @@ export function Testimonials() {
                       </span>
                     </span>
                   </figcaption>
-                </motion.figure>
+                </m.figure>
               </AnimatePresence>
             </div>
 
