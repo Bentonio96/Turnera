@@ -98,19 +98,21 @@ export function Features() {
                   </Reveal>
                   <ul className="mt-6 flex flex-col gap-3">
                     {feature.bullets.map((bullet, j) => (
-                      <Reveal key={bullet} delay={STAGGER * (j + 1)}>
-                        <li className="flex items-start gap-3">
-                          <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent-soft">
-                            <Check
-                              className="size-3 text-accent"
-                              aria-hidden="true"
-                            />
+                      <li key={bullet}>
+                        <Reveal delay={STAGGER * (j + 1)}>
+                          <span className="flex items-start gap-3">
+                            <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-accent-soft">
+                              <Check
+                                className="size-3 text-accent"
+                                aria-hidden="true"
+                              />
+                            </span>
+                            <span className="text-sm text-ink sm:text-[0.9375rem]">
+                              {bullet}
+                            </span>
                           </span>
-                          <span className="text-sm text-ink sm:text-[0.9375rem]">
-                            {bullet}
-                          </span>
-                        </li>
-                      </Reveal>
+                        </Reveal>
+                      </li>
                     ))}
                   </ul>
                 </div>
