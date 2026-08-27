@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Aplica el tema antes del primer paint para evitar el flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem("turnera-theme");
+          var dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Turnera — Turnos online para clínicas pequeñas</title>
+    <meta
+      name="description"
+      content="Turnera ordena la agenda de tu clínica: reservas online, recordatorios automáticos por WhatsApp y reportes claros. Menos llamadas, menos ausencias, más tiempo para atender."
+    />
+    <link rel="canonical" href="https://turnera.vercel.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141312" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Turnera" />
+    <meta property="og:title" content="Turnera — Turnos online para clínicas pequeñas" />
+    <meta
+      property="og:description"
+      content="Reservas online, recordatorios automáticos y la agenda de todo tu equipo en un solo lugar. Menos llamadas, menos ausencias."
+    />
+    <meta property="og:url" content="https://turnera.vercel.app/" />
+    <meta property="og:image" content="https://turnera.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_AR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Turnera — Turnos online para clínicas pequeñas" />
+    <meta
+      name="twitter:description"
+      content="Reservas online, recordatorios automáticos y la agenda de todo tu equipo en un solo lugar."
+    />
+    <meta name="twitter:image" content="https://turnera.vercel.app/og.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
