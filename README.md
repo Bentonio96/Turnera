@@ -82,6 +82,9 @@ mocks (un turno confirmado, un indicador). Todo lo demás es monocromo cálido.
 - **La previsualización del producto está construida con divs y tokens**, no con imágenes:
   la agenda del día del hero (con un turno que se confirma solo y una notificación de WhatsApp
   que llega), el flujo de reserva, la conversación de recordatorio y el reporte de ocupación.
+- **El flujo de reserva es una demo jugable**: se elige profesional, día y horario (con
+  disponibilidad simulada que cambia según la combinación) y se confirma; el estado de éxito
+  se reinicia solo para volver a probar.
 - **Marquesina tipográfica**: los logos de clientes ficticios son wordmarks puros con distintos
   tratamientos de la propia dupla tipográfica — cero imágenes de stock.
 - **Numerales editoriales**: los bloques de features se numeran en Fraunces itálica gigante en
@@ -111,7 +114,9 @@ mocks (un turno confirmado, un indicador). Todo lo demás es monocromo cálido.
   (landmarks, listas válidas, jerarquía de encabezados).
 - Contraste AA verificado: auditoría automática en claro (Lighthouse 100) y verificación
   manual de los pares del modo oscuro (acento 8.7:1 sobre fondo, muted 7.9:1).
-- Los mocks decorativos van con `aria-hidden`: ilustran lo que el texto ya dice.
+- Los mocks puramente decorativos van con `aria-hidden`; la demo de reserva, que sí es
+  operable, usa botones reales con `aria-pressed`, grupos etiquetados y anuncio `aria-live`
+  al confirmar.
 
 ## Rendimiento
 
